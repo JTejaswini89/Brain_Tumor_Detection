@@ -1,0 +1,46 @@
+{% extends 'users/userbase.html' %}
+
+
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <marquee behavior="slide" direction="up">
+                <center>
+                    <p class="display-5">Welcome User</p>
+                </center>
+                </marquee>
+            </marquee>
+            <div class="jumbotron">
+                <h1 class="text-center">User Upload MRI Image Form</h1>
+                  <form action="{%url 'procesMyTestImages'%}" method="post" enctype="multipart/form-data">
+                                                            {%csrf_token%}
+                                                         <div class="form-group">
+                                                                <input type="file" id="contact_subject" name="file" class="form-control" placeholder="Select an Image"  required/>
+                                                         </div>
+                                                          <div class="form-group">
+                                                              <button type="submit" id="contact_subject" name="Submit" class="btn-get-started scrollto" >Submit</button>
+                                                            </div>
+        
+        
+                                                        </form>
+        
+                                {% if messages %}
+                                {% for message in messages %}
+                                <font color='GREEN'> {{ message }}</font>
+                                {% endfor %}
+                                {% endif %}
+        
+        
+                 <pre>
+                        <h3>MRI Image Result:  {{res}}</h3>
+                        <img src="{{path}}" width="450" height="380">
+                        if Tumor
+                        <img src="{{pp}}"  width="450" height="380">
+                    </pre>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
